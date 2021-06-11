@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    ListPet
+{% endblock %}
+
+{% block subtitulo %}
+    Listagem de Pets
+{% endblock %}
+
+
+{% block main %}
+    {% for pet in dados %}
+        {% if pet.nome %}
+            nome: {{ pet.nome }}<br>
+        {% endif %}
+        {% if pet.raca %}
+           Raça: {{ pet.raca }}<br>
+        {% endif %}
+        {% if pet.idade %}
+            Idade: {{ pet.idade }}<br>
+        {% endif %}
+        {% if pet.id_cliente %}
+            Dono: {{ pet.id_cliente }}<br>
+        {% endif %}
+        Foto: {{ pet.foto }}<br>
+        {% if pet.foto %}
+            <img src="{{  pet.foto.url }}" width="150" alt=""><br>
+        {% else %}
+            <img src="{% static 'img/pet-generico.png' %}" width="150" alt=""><br>
+        {% endif %}
+        ------------------------------------------------ <br>
+    {% endfor %}
+
+{% endblock %}

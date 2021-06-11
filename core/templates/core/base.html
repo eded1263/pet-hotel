@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="row">
+        <div class="col"> <h3>{% block subtitulo %} {% endblock %}</h3> </div>
+        <div class="col text-right">
+                {% if user.get_username  %}
+                    (usuário: {{ user.get_username }} | <a href="/admin/">admin</a> |<a href="{% url 'logout' %}">logout</a>  )
+                {% else %}
+                    ( <a href="{% url 'login' %}">login</a> |  <a href="{% url 'url_registrar' %}">registrar</a>)
+                {% endif %}
+        </div>
+    </div>
+    {% block main %}
+    {% endblock %}
+</body>
+</html>

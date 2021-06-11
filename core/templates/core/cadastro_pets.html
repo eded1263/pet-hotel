@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    CadPet
+{% endblock %}
+
+{% block subtitulo %}
+    Cadastro de Pet
+{% endblock %}
+
+{% block main %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Cadastrar Pet</button>
+    </form>
+
+{% endblock %}
