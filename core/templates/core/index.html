@@ -10,15 +10,23 @@
 {% endblock %}
 
 {% block main %}
-
-    <a href="/">Home</a>  &nbsp;
-    <a href="{% url 'url_cadastro_pets' %}">Cadastro_Cliente</a> &nbsp;
-    <a href="{%  url 'url_listagem_clientes'%}">Listagem_Clientes</a> &nbsp;
-    <a href="{% url 'url_cadastro_pets' %}">Cadastro_Pet</a> &nbsp;
-    <a href="{% url 'url_listagem_pets' %}">Listagem_Pets</a> &nbsp;
-    <a href="{% url 'url_tabela' %}">Tabela</a> &nbsp;
-    <br><br>
-    <img src="{% static 'img/fundo.png' %}" width="600">
+    <div class="chamada">
+        <img src="{% static 'img/fundo.png' %}" class="image">
+        <div class="texto">
+            <h1 class="titulo">Aqui seu amiguinho é bem cuidado!</h1>
+            <p class="subtitulo-1"> No PetHotel, você viaja sem se preocupar se o seu companheiro está se alimentando corretamente, nós cuidamos dele pra você! </p>
+            <p class="subtitulo"> Consulte nossos planos! Pacotes começando em 1200 reais a hora para cães com o capeta no corpo :) </p>
+            <a href="{% url 'url_planos' %}" class="btn btn-success text-center"> Ver planos </a>
+        </div>
+    </div>
+    <div class="bucho">
+        <div class="texto">
+            <h1 class="titulo">De bucho cheio</h1>
+            <p class="subtitulo-1"> Conosco, seu bichinho nunca vai passar fome, possuímos uma dieta restrita com horários fixos, até para os pets esfomeados!</p>
+            <p class="subtitulo"> Ah, e não se preocupa, seu doguinho tem alguma alergia? Nos informe, iremos fazer um rango especial pro seu parceiro ;) </p>
+        </div>
+        <img src="{% static 'img/bucho-cheio.jpg' %}" class="image">
+    </div>
 
 
 {% endblock %}

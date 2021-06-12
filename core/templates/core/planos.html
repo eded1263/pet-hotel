@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block subtitulo %}
+    Pet Hotel
+{% endblock %}
+
+{% block main %}
+    <div class="wrapper-planos container">
+        <h1 class="title"> Planos </h1>
+        <h3 class="subtitulo-planos">Veja em qual seu amigo se encaixa, e faça a sua reserva!</h3>
+        <div class="cards">
+            {% for plano in planos %}
+               <div class="card plano">
+                  <div class="card-body">
+                    <h4 class="card-title">{{ plano.nome }}</h4>
+                    <p class="card-text">{{ plano.descricao }}</p>
+                    <a href="{% url 'url_reserva' %}" class="card-link">Fazer uma reserva por apenas {{ plano.valor }} ao dia!</a>
+                  </div>
+               </div>
+            {% endfor %}
+        </div>
+   </div>
+{% endblock %}

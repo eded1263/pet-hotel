@@ -13,9 +13,8 @@ class Cliente(models.Model):
     fone = models.CharField(max_length=14, blank=True, null=True)
     foto = models.ImageField(upload_to='fotos_clientes', blank=True, null=True)
 
-
-def __str__(self):
-    return self.nome + '(' + str(self.id) + ')'
+    def __str__(self):
+        return self.nome + '(' + str(self.id) + ')'
 
 
 class Meta:
@@ -29,10 +28,21 @@ class Pet(models.Model):
     id_cliente = models.ForeignKey('Cliente', on_delete=models.CASCADE)
     foto = models.ImageField(upload_to='fotos_clientes', blank=True, null=True)
 
+    def __str__(self):
+        return f'{self.nome} ({self.raca})'
 
-def __str__(self):
-    return f'{self.nome} ({self.raca})'
+    class Meta:
+        verbose_name_plural = 'Pets'
 
 
-class Meta:
-    verbose_name_plural = 'Pets'
+class Plano(models.Model):
+    nome = models.CharField(max_length=100)
+    descricao = models.TextField(blank=True, null=True)
+    valor = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f'{self.nome} ({self.descricao})'
+
+    class Meta:
+        verbose_name_plural = 'Planos'
+

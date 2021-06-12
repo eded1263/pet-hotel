@@ -5,13 +5,22 @@ from django.urls import reverse_lazy
 from django.views import generic
 
 from core.forms import FormCliente, FormPet
-from core.models import Cliente, Pet
+from core.models import Cliente, Pet, Plano
 
 
 # Create your views here.
 
 def home(request):
     return render(request, 'core/index.html')
+
+
+def reserva(request):
+    return render(request, 'core/tabela.html')
+
+
+def planos(request):
+    contexto = {'planos': Plano.objects.all()}
+    return render(request, 'core/planos.html', contexto)
 
 
 class Registrar(generic.CreateView):
