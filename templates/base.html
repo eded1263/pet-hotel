@@ -19,24 +19,26 @@
 
       <!-- Links -->
       <ul class="navbar-nav">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-            Donos
-          </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="{% url 'url_cadastro_clientes' %}">Cadastrar um dono</a>
-            <a class="dropdown-item" href="{% url 'url_listagem_clientes' %}">Listagem de donos</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-            Pets
-          </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="{% url 'url_cadastro_pets' %}">Cadastrar um pet</a>
-            <a class="dropdown-item" href="{% url 'url_listagem_pets' %}">Listagem de pets</a>
-          </div>
-        </li>
+        {% if user.get_username  %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                Donos
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'url_cadastro_clientes' %}">Cadastro cliente</a>
+                <a class="dropdown-item" href="{% url 'url_listagem_clientes' %}">Listar clientes</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                Pets
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'url_cadastro_pets' %}">Cadastrar um novo pet</a>
+                <a class="dropdown-item" href="{% url 'url_listagem_pets' %}">Listar meus pets</a>
+              </div>
+            </li>
+        {% endif %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'url_planos' %}">Consultar planos</a>
         </li>
@@ -46,10 +48,10 @@
       </ul>
       <div class="logado ml-auto">
         {% if user.get_username  %}
-            (usuário: {{ user.get_username }} | <a href="/admin/">admin</a> |<a href="{% url 'logout' %}">logout</a>  )
+            Seja bem vindo {{ user.get_username }} | <a href="/admin">Painel administrativo</a> | <a href="{% url 'logout' %}">logout</a>
         {% else %}
 {#                ( <a href="{% url 'login' %}">login</a> |  <a href="{% url 'url_registrar' %}">registrar</a>)#}
-            ( <a href="#">login</a> |  <a href="#">registrar</a>)
+             <a href="{% url 'login' %}">login</a> |  <a href="{% url 'registrar' %}">registrar</a>
         {% endif %}
       </div>
     </nav>

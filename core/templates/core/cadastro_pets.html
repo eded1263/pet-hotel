@@ -9,10 +9,14 @@
 {% endblock %}
 
 {% block main %}
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Cadastrar Pet</button>
-    </form>
-
+    <div class="container form-wrapper">
+        <form method="post" class="formulario" enctype="multipart/form-data">
+            <h1>Inserir um novo cachorro</h1>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div style="color: white">a</div> {# Precisei fazer isso pra não quebrar a tabela #}
+            <button type="submit">{{ texto_botao }}</button>
+            <button type="button" onclick="location.href='url_voltar'">Cancelar</button>
+        </form>
+    </div>
 {% endblock %}

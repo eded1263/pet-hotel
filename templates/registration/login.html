@@ -9,10 +9,15 @@
 {% endblock %}
 
 {% block main %}
-    <h3>Autenticação de usuário</h3>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
+    <div class="container registrar">
+        <div class="wrapper">
+                <h3>Entrar na minha conta</h3>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-success">Login</button>
+                </form>
+        </div>
+    </div>
+
 {% endblock %}

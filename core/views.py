@@ -14,6 +14,7 @@ def home(request):
     return render(request, 'core/index.html')
 
 
+@login_required
 def reserva(request):
     return render(request, 'core/tabela.html')
 
@@ -35,14 +36,13 @@ def cadastro_cliente(request):
         form = FormCliente(request.POST or None, request.FILES or None)
         if form.is_valid():
             form.save()
-            return redirect('principal')
+            return redirect('url_principal')
         else:
             contexto = {'form': form, 'texto_titulo': 'Cadastro de Cliente',
-                        'texto_botao': 'Cadastrar', 'url_voltar': 'principal'}
+                        'texto_botao': 'Cadastrar', 'url_voltar': 'url_principal'}
             return render(request, 'core/cadastro_clientes.html', contexto)
     else:
         return render(request, 'core/nao_autorizado.html')
-
 
 
 @login_required
@@ -60,12 +60,13 @@ def cadastro_pets(request):
     form = FormPet(request.POST or None, request.FILES or None)
     if form.is_valid():
         form.save()
-        return redirect('principal')
-    contexto = {'form': form}
+        return redirect('url_principal')
+    contexto = {'form': form, 'texto_titulo': 'Cadastro de Cliente', 'texto_botao': 'Cadastrar',
+                'url_voltar': 'url_principal'}
     return render(request, 'core/cadastro_pets.html', contexto)
 
 
-@login_required()
+@login_required
 def listagem_pets(request):
     dados = Pet.objects.all()
     contexto = {'dados': dados}
@@ -76,9 +77,10 @@ def tabela(request):
     return render(request, 'core/tabela.html')
 
 
-def atualiza_cliente(request, id):
+@login_required
+def atualiza_cliente(request):
     if request.user.is_staff:
-        obj = Cliente.objects.get(id=id)
+        obj = Cliente.objects.get(id=request.user.id)
         form = FormCliente(request.POST or None, request.FILES or None, instance=obj)
         if form.is_valid():
             form.save()
